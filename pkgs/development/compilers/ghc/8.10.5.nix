@@ -115,6 +115,13 @@ stdenv.mkDerivation (rec {
     # upstream patch. Don't forget to check backport status of the upstream patch
     # when adding new GHC releases in nixpkgs.
     ./respect-ar-path.patch
+    # Make RTS export allocateWrite again which is used by doctests and
+    # haskell-language-server, remove at 8.10.6.
+    # See also https://gitlab.haskell.org/ghc/ghc/-/issues/19763
+    (fetchpatch {
+      url = "https://gitlab.haskell.org/ghc/ghc/-/commit/296f25fa5f0fce033b529547e0658076e26f4cda.patch";
+      sha256 = "1mm1j83v96iwzravrb0zp67hjsdsqj8fzlqn5ck84lpfh7f04fmd";
+    })
   ] ++ lib.optionals stdenv.isDarwin [
     # Make Block.h compile with c++ compilers. Remove with the next release
     (fetchpatch {
