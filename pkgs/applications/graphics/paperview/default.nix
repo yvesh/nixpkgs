@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/glouw/paperview";
     license = licenses.mit;
     platforms = platforms.unix;
-    maintainers = [ mtaintainers.yvesh ];
+    maintainers = [ maintainers.yvesh ];
   };
 } 
 
